@@ -11,7 +11,7 @@ const page = () => {
     <section className="lg:mx-40 mx-6 py-8">
       <Breadcrumb />
 
-      <div className="flex justify-between gap-8">
+      <div className="flex justify-between gap-12">
         {/* left  form */}
         <div className="w-2/3">
           <div className="text-display-3 font-semibold text-neutral-8 pb-10 w-full">
@@ -85,8 +85,20 @@ const page = () => {
 
         {/* Right product details */}
         <div className="w-1/3">
-          <div className="text-display-3 font-semibold text-neutral-8 pb-6 w-full">
-            Products
+          <div className="flex justify-between border-b border-neutral-4">
+            <div className="text-display-3 font-semibold text-neutral-8 pb-6 w-full">
+              Product
+            </div>
+
+            <div className="text-display-3 font-semibold text-neutral-8 pb-6 w-full">
+              Subtotal
+            </div>
+          </div>
+
+          <div className="">
+            <ul>
+              <li></li>
+            </ul>
           </div>
         </div>
       </div>
