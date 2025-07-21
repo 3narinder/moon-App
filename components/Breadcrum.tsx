@@ -22,8 +22,11 @@ const Breadcrumb = ({ productName }: BreadcrumbProps) => {
   const pathname = usePathname();
   const segments = pathname?.split("/").filter(Boolean);
 
+  const virtualSegments =
+    pathname === "/payment" ? ["cart", "payment"] : segments;
+
   const buildHref = (index: number) =>
-    "/" + segments?.slice(0, index + 1).join("/");
+    "/" + virtualSegments?.slice(0, index + 1).join("/");
 
   return (
     <nav className="text-sm text-neutral-6 mb-4">
@@ -34,13 +37,13 @@ const Breadcrumb = ({ productName }: BreadcrumbProps) => {
           </Link>
         </li>
 
-        {segments.map((segment, index) => {
-          const isLast = index === segments.length - 1;
+        {virtualSegments.map((segment, index) => {
+          const isLast = index === virtualSegments.length - 1;
           const href = buildHref(index);
 
-          // Special case: Show productName instead of ID in product pages
+          // Product page override
           if (
-            segments.includes("product") &&
+            virtualSegments.includes("product") &&
             isLast &&
             productName &&
             segment !== "product"
@@ -55,7 +58,6 @@ const Breadcrumb = ({ productName }: BreadcrumbProps) => {
             );
           }
 
-          // Label mapping fallback
           const label =
             PATH_LABELS[segment.toLowerCase()] ||
             segment.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());

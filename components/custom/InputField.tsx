@@ -12,6 +12,7 @@ interface InputProps {
   ) => void;
   isTextArea?: boolean; // Toggle between input and textarea
   textAreaPlaceholder?: string; // Custom placeholder for textarea
+  className?: string;
 }
 
 const InputField: React.FC<InputProps> = ({
@@ -22,14 +23,15 @@ const InputField: React.FC<InputProps> = ({
   onChange,
   isTextArea = false,
   textAreaPlaceholder = "Enter your message",
+  className,
 }) => {
   return (
-    <div className="flex flex-col w-full">
+    <div className={`flex flex-col w-full ${className}`}>
       <label
         htmlFor={name}
         className="text-display-2 text-neutral-8 font-semibold mb-2"
       >
-        {label}
+        {label}*
       </label>
 
       {isTextArea ? (
